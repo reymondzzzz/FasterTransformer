@@ -143,16 +143,18 @@ if(NOT (FIND_SM STREQUAL True))
                         -gencode=arch=compute_70,code=\\\"sm_70,compute_70\\\" \
                         -gencode=arch=compute_75,code=\\\"sm_75,compute_75\\\" \
                         -gencode=arch=compute_80,code=\\\"sm_80,compute_80\\\" \
+                        -gencode=arch=compute_60,code=\\\"sm_60,compute_60\\\" \
+                        -gencode=arch=compute_61,code=\\\"sm_61,compute_61\\\" \
                         ")
   #                      -rdc=true")
   set(CMAKE_C_FLAGS    "${CMAKE_C_FLAGS}    -DWMMA")
   set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS}  -DWMMA")
   set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -DWMMA")
   if(BUILD_PYT)
-    set(ENV{TORCH_CUDA_ARCH_LIST} "7.0;7.5;8.0")
+    set(ENV{TORCH_CUDA_ARCH_LIST} "6.0;6.1;7.0;7.5;8.0")
   endif()
-  set(CMAKE_CUDA_ARCHITECTURES 70 75 80)
-  message("-- Assign GPU architecture (sm=70,75,80)")
+  set(CMAKE_CUDA_ARCHITECTURES 60 61 70 75 80)
+  message("-- Assign GPU architecture (sm=60,61,70,75,80)")
 endif()
 
 if(BUILD_PYT)
@@ -160,7 +162,7 @@ if(BUILD_PYT)
 endif()
 
 set(CMAKE_C_FLAGS_DEBUG    "${CMAKE_C_FLAGS_DEBUG}    -Wall -O0")
-set(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG}  -Wall -O0")
+set(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG}  -Wall -O0 -g")
 # set(CMAKE_CUDA_FLAGS_DEBUG "${CMAKE_CUDA_FLAGS_DEBUG} -O0 -G -Xcompiler -Wall  --ptxas-options=-v --resource-usage")
 set(CMAKE_CUDA_FLAGS_DEBUG "${CMAKE_CUDA_FLAGS_DEBUG} -O0 -G -Xcompiler -Wall")
 
