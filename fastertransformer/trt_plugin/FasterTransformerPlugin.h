@@ -49,7 +49,7 @@ class FasterTransformerDecoderPlugin : public nvinfer1::IPluginV2DynamicExt {
  private:
 	std::unique_ptr<DecodingSampling<OperationType::FP32>> decoding_;
 	// decoder params
-	int seq_len =12;
+	int seq_len = 12;
 	int head_num = 2;
 	int size_per_head = 64;
 	int vocab_size = 42;
